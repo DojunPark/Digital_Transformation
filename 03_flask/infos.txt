@@ -1,3 +1,4 @@
+* 코드
 pip install flask  # 플라스크 설치
 pip install Flask-Migrate    # aql-alchemy를 포함한 라이브러리 설치
 flask db init      # 데이터베이스 초기화 - flask에서 sql db를 사용할 수 있도록 함
@@ -13,3 +14,5 @@ flask run   # 파일을 실행
 views.py: 블루프린트로 기능을 실행할 수 있는 url을 생성
 __init__.py: 블루프린트를 등록
 redirect, url_for(블루프린트로 등록된 url접근), post에 대한 이해
+
+

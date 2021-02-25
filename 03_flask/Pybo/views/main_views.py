@@ -1,3 +1,9 @@
+from flask import Blueprint, render_template, request, url_for
+from werkzeug.utils import redirect
+from Pybo import db
+from Pybo.models import Question, Answer
+from datetime import datetime
+
 # uri를 분석하고 uri에 따라 실행되는 함수를 정의하는 곳
 
 from flask import Blueprint, render_template, url_for
@@ -18,7 +24,9 @@ def index():
 
 @bp.route('/test')
 def test():
-    age_tmp = 10
-    ls_tmp = list(range(10))
-    return render_template('question/test.html', age=age_tmp, ls_data=ls_tmp)
+    for i in range(100):
+        q = Question(subject='테스트입니다. {0}'.format(i), content='내용무', create_date=datetime.now())
+        db.session.add(q)
+    db.session.commit()
+    return 'Success'
 

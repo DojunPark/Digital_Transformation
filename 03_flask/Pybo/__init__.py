@@ -16,8 +16,8 @@ db.init_app(app)   # flask를 sqlalchemy에 넣음
 migrate.init_app(app, db)  # flask와 db를 migrate에 넣음
 
 from .views import main_views, question_views, answer_views   # uri 구분 실행 코드 실행
-app.register_blueprint(main_views.bp)   # 블루프린트를 앱에 등록
-app.register_blueprint(question_views.bp)   # 블루프린트를 앱에 등록
+app.register_blueprint(main_views.bp)   # views에 추가한 블루프린트를 앱에 반드시 등록해야함
+app.register_blueprint(question_views.bp)
 app.register_blueprint(answer_views.bp)
 
 
