@@ -1,6 +1,8 @@
 * 코드
 pip install flask  # 플라스크 설치
 pip install Flask-Migrate    # aql-alchemy를 포함한 라이브러리 설치
+pip install email_validator  # 이메일 검증 패키지
+
 flask db init      # 데이터베이스 초기화 - flask에서 sql db를 사용할 수 있도록 함
 flask db migrate   # 데이터베이스 생성 / flask 클래스를 추가할 때마다 실행
 flask db upgrade

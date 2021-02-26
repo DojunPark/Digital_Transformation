@@ -10,9 +10,14 @@ bp = Blueprint('question', __name__, url_prefix='/question')
 @bp.route('/list')
 def qlist():
     page = request.args.get('page', type=int, default=1)
-    print(page)
     question_list = Question.query.order_by(Question.create_date.desc())
     question_list = question_list.paginate(page, per_page=10)
+
+    print(question_list.total)
+    print(question_list.per_page)
+    print(question_list.iter_pages)
+    print(question_list.prev_num)
+
     return render_template('question/question_list.html', question_list=question_list)
 
 @bp.route('/add_question')

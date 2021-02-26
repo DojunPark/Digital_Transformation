@@ -1,10 +1,19 @@
 from flask import Flask
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import MetaData
 import config   # 환경설정
 
 # 데이터베이스
-db = SQLAlchemy()
+naming_convention = {
+    "ix": 'ix_%(column_0_label)s',
+    "uq": "uq_%(table_name)s_%(column_0_name)s",
+    "ck": "ck_%(table_name)s_%(column_0_name)s",
+    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+    "pk": "pk_%(table_name)s"
+}
+db = SQLAlchemy(metadata=MetaData(naming_convention=naming_convention))  # SQLite 오류 방지
+migrate = Migrate()
 migrate = Migrate()
 
 app = Flask(__name__)
@@ -13,12 +22,23 @@ app.debug = True    # 코드가 수정되면 서버 재실행
 
 # ORM 데이터베이스 초기화
 db.init_app(app)   # flask를 sqlalchemy에 넣음
-migrate.init_app(app, db)  # flask와 db를 migrate에 넣음
 
-from .views import main_views, question_views, answer_views   # uri 구분 실행 코드 실행
+if app.config['SQLALCHEMY_DATABASE_URI'].startswith("sqlite"):
+    migrate.init_app(app, db, render_as_batch=True)
+else:
+    migrate.init_app(app, db)
+
+
+from .views import main_views, question_views, answer_views, auth_views   # uri 구분 실행 코드 실행
 app.register_blueprint(main_views.bp)   # views에 추가한 블루프린트를 앱에 반드시 등록해야함
 app.register_blueprint(question_views.bp)
 app.register_blueprint(answer_views.bp)
+app.register_blueprint(auth_views.bp)
+
+# 필터 등록
+from .filter import format_datetime
+app.jinja_env.filters['datetime'] = format_datetime
+
 
 
 #

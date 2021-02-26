@@ -17,10 +17,10 @@ class Answer(db.Model):
     create_date = db.Column(db.DateTime(), nullable=False)
 
 # 데이터베이스의 유저 테이블 클래스 생성
-class Users(db.Model):
+class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.String(12), nullable=False)
-    content = db.Column(db.Text(), nullable=False)
-    create_date = db.Column(db.DateTime(), nullable=False)
+    username = db.Column(db.String(150), unique=True, nullable=False)
+    password = db.Column(db.String(200), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
 
 
