@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}">
+
+<div class="container my-3">
+    <h2 class="border-bottom py-2">도서명 검색</h2>
+
+    <form method="post" class="post-form my-3">
+        {{ form.csrf_token }}
+
+        {{ form.title.label }}
+        {{ form.title(class='form-control') }}
+
+
+    </form>
+<button type="submit" class="btn btn-primary">검색하기</button>
+
+    {% for row in df %}
+        {% for cell in row %}
+            <li>cell</li>
+        {% endfor %}
+    {% endfor %}
+
+{% endblock %}

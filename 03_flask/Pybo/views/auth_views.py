@@ -5,8 +5,19 @@ from Pybo.models import Question, Answer, User
 from Pybo.forms import UserCreateForm, UserLoginForm
 from datetime import datetime
 from werkzeug.utils import redirect
+import functools
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
+
+# 로그인 데코레이터 함수 정의
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.login'))
+        return view(**kwargs)
+    return wrapped_view
+
 
 @bp.before_app_request
 def load_logged_ina_user():

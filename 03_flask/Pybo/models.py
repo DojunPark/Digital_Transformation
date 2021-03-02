@@ -6,6 +6,11 @@ class Question(db.Model):
     subject = db.Column(db.String(200), nullable=False)
     content = db.Column(db.Text(), nullable=False)
     create_date = db.Column(db.DateTime(), nullable=False)
+    # 컬럼 추가
+    # user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=True, server_default='1')
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
+    user = db.relationship('User', backref=db.backref('question_set'))
+    modify_date = db.Column(db.DateTime(), nullable=True)
 
 class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -15,6 +20,10 @@ class Answer(db.Model):
     question = db.relationship('Question', backref=db.backref('answer_set'))
     content = db.Column(db.Text(), nullable=False)
     create_date = db.Column(db.DateTime(), nullable=False)
+    # 컬럼 추가
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
+    user = db.relationship('User', backref=db.backref('answer_set'))
+    modify_date = db.Column(db.DateTime(), nullable=True)
 
 # 데이터베이스의 유저 테이블 클래스 생성
 class User(db.Model):
