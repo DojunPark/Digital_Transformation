@@ -12,14 +12,36 @@
         {{ form.title.label }}
         {{ form.title(class='form-control') }}
 
-
+        <button type="submit" class="btn btn-primary my-2">검색하기</button>
     </form>
-<button type="submit" class="btn btn-primary">검색하기</button>
 
-    {% for row in df %}
-        {% for cell in row %}
-            <li>cell</li>
-        {% endfor %}
-    {% endfor %}
+    {% if df %}
+    <table class="table">
+        <thead>
+            <tr class="text-center thead-dark">
+                <th style="width:5%">번호</th>
+                <th style="width:40%">도서명</th>
+                <th>저자</th>
+                <th>상세 정보</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in df %}
+            <tr class="text-center">
+                <td>{{ loop.index }}</td>
+                <td>{{ row['title'] | safe | shortword }}</td>
+                <td>{{ row['author'] | safe }}</td>
+                <td>{{ row['description'] | safe | shortword }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+    {% endif %}
 
 {% endblock %}
+
+
+</div>

@@ -12,14 +12,13 @@ def search_title(keyword, nid, npw):
     html = requests.get(url, headers={"X-Naver-Client-Id": nid,
                                       "X-Naver-Client-Secret": npw})
     json1 = html.json()
-    df = pd.DataFrame(json1['items'], columns=['title', 'author', 'publisher', 'description'])
-    return df
+    return json1['items']
+
 
 def search_author(keyword, nid, npw):
     url = 'https://openapi.naver.com/v1/search/book_adv.json?d_auth=' + keyword + '&display=30&start=1'
     html = requests.get(url, headers={"X-Naver-Client-Id": nid,
                                       "X-Naver-Client-Secret": npw})
     json1 = html.json()
-    df = pd.DataFrame(json1['items'], columns=['title', 'author', 'publisher', 'description'])
-    return df
+    return json1['items']
 
