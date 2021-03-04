@@ -6,12 +6,12 @@
 
     <link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}">
 
-    <title>BookBot입니다!</title>
+    <title>InfoBot입니다!</title>
 </head>
 <body>
 <!-- 네비게이션바 -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-    <a class="navbar-brand" href="{{ url_for('hello') }}">BOOKBOT</a>
+    <a class="navbar-brand" href="{{ url_for('hello') }}">INFOBOT</a>
     <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -24,6 +24,12 @@
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="{{ url_for('author.author_search') }}">저자명 검색</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ url_for('movie.movie_info') }}">영화 정보</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ url_for('movie.movie_rank') }}">영화 순위</a>
             </li>
         </ul>
 

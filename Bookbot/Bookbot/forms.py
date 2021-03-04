@@ -8,6 +8,12 @@ class TitleForm(FlaskForm):
 class AuthorForm(FlaskForm):
     author = StringField('저자명을 입력하세요', validators=[DataRequired()])
 
+class MovieInfoForm(FlaskForm):
+    title = StringField('영화명을 입력하세요', validators=[DataRequired()])
+
+
+
+
 
 
 
