@@ -14,7 +14,6 @@ naming_convention = {
 }
 db = SQLAlchemy(metadata=MetaData(naming_convention=naming_convention))  # SQLite 오류 방지
 migrate = Migrate()
-migrate = Migrate()
 
 app = Flask(__name__)
 app.config.from_object(config)   # 데이터베이스 설정

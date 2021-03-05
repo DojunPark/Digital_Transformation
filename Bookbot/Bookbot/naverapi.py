@@ -51,3 +51,12 @@ def naver_movie_rank():
         infos.append((img, title, point, director, actor))
 
     return infos
+
+
+def shopping(keyword, nid, npw):
+    url = 'https://openapi.naver.com/v1/search/shop.json?query=' + keyword + '&display=30&start=1'
+    html = requests.get(url, headers={"X-Naver-Client-Id": nid,
+                                      "X-Naver-Client-Secret": npw})
+    json1 = html.json()
+    return json1['items']
+

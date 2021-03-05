@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}">
+
+<div class="container my-3">
+    <h2 class="border-bottom py-2">상품명 검색</h2>
+
+    <form method="post" class="post-form my-3">
+        {{ form.csrf_token }}
+
+        {{ form.title.label }}
+        {{ form.title(class='form-control') }}
+
+        <button type="submit" class="btn btn-primary my-2">검색하기</button>
+    </form>
+
+    {% if json %}
+    <table class="table">
+        <thead>
+            <tr class="text-center thead-dark">
+                <th style="width:7%">번호</th>
+                <th style="width:10%">이미지</th>
+                <th style="width:40%">상품명</th>
+                <th>최저가</th>
+                <th>최고가</th>
+                <th>구매</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in json %}
+            <tr class="text-center">
+                <td>{{ loop.index }}</td>
+                <td><img src={{ row.image }} height="100" width="100" alt="My Image"></td>
+                <td>{{ row.title | safe }}</td>
+                <td>{{ row.lprice | safe | price_comma }}원</td>
+                <td>{{ row.hprice | safe | price_comma }}원</td>
+                <td>
+                    <form action="{{url_for('shopping.buy_product')}}" method="post" class="post-form">
+                        <input type="hidden" name="image" value="{{row.image}}">
+                        <input type="hidden" name="title" value="{{row.title}}">
+                        <input type="hidden" name="lprice" value="{{row.lprice}}">
+                        <button type="submit" class="btn btn-primary my-2">구매하기</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+</div>
+
+
+
+{% endblock %}

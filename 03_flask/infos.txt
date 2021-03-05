@@ -3,14 +3,6 @@ pip install flask  # 플라스크 설치
 pip install Flask-Migrate    # aql-alchemy를 포함한 라이브러리 설치
 pip install email_validator  # 이메일 검증 패키지
 
-flask db init      # 데이터베이스 초기화 - flask에서 sql db를 사용할 수 있도록 함
-flask db migrate   # 데이터베이스 생성 / flask 클래스를 추가할 때마다 실행
-flask db upgrade
-flask db heads     # 마지막 적용된 migrate 버전
-flask db current   # 현재 적용된 migrate 버전 (위 버전과 동일해야함)
-flask db stamp heads  # 최종 버전을 현재 버전으로 변경
-
-
 set FLASK_APP=pybo          # flask 실행 파일을 pybo.py로 지정
 set FLASK_ENV=development   # 변경 시 서버를 재실행 할 수 있는 app.debug = True 설정을 가능하게 함
 flask run   # 파일을 실행
@@ -21,4 +13,17 @@ views.py: 블루프린트로 기능을 실행할 수 있는 url을 생성
 __init__.py: 블루프린트를 등록
 redirect, url_for(블루프린트로 등록된 url접근), post에 대한 이해
 
+
+* 데이터베이스
+- config에 환경설정 추가
+- __init__에 db, migrate 설정
+- models.py에서 각 테이블 모델 설정
+- views.py에서 설정
+
+flask db init      # 데이터베이스 초기화 - flask에서 sql db를 사용할 수 있도록 함
+flask db migrate   # 데이터베이스 생성 / flask 클래스를 추가할 때마다 실행
+flask db upgrade
+flask db heads     # 마지막 적용된 migrate 버전
+flask db current   # 현재 적용된 migrate 버전 (위 버전과 동일해야함)
+flask db stamp heads  # 최종 버전을 현재 버전으로 변경
 
