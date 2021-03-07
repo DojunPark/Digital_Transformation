@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}">
+
+<div class="container my-3">
+    <h2 class="border-bottom py-2">최저가 상품 주문하기</h2>
+
+    <table class="table">
+        <thead>
+            <tr class="text-center thead-dark">
+                <th>상품 이미지</th>
+                <th>상품명</th>
+                <th>최저가</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center">
+                <td><img src={{ image }} height="100" width="100" alt="My Image"></td>
+                <td>{{ title | safe }}</td>
+                <td>{{ lprice | price_parser }}원</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form method="post" class="post-form my-3">
+        {{ form.csrf_token }}
+        {{ form.delivery_address.label }}
+        {{ form.delivery_address(class='form-control') }}
+
+        <input type="hidden" name="title" value="{{title}}">
+        <input type="hidden" name="lprice" value="{{lprice}}">
+        <input type="hidden" name="image" value="{{image}}">
+        <button type="submit" class="btn btn-primary my-2">주문하기</button>
+    </form>
+</div>
+
+
+{% endblock %}

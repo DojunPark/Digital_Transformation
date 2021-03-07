@@ -1,6 +1,44 @@
 {% extends 'base.html' %}
 {% block content %}
 
-도서명으로 도서 검색을 할 수 있습니다.
+<div class="container my-3">
+    <h2 class="border-bottom py-2">도서명 검색</h2>
+
+    <form method="post" class="post-form my-3">
+        {{ form.csrf_token }}
+
+        {{ form.book_title.label }}
+        {{ form.book_title(class='form-control') }}
+
+        <button type="submit" class="btn btn-primary my-2">검색하기</button>
+    </form>
+
+    {% if data %}
+    <table class="table">
+        <thead>
+            <tr class="text-center thead-dark">
+                <th style="width:6%">번호</th>
+                <th>북커버</th>
+                <th style="width:30%">도서명</th>
+                <th style="width:10%">저자</th>
+                <th style="width:10%">가격</th>
+                <th>상세 정보</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr class="text-center">
+                <td>{{ loop.index }}</td>
+                <td><img src={{ row.image }} height="100" width="70" alt="My Image"></td>
+                <td>{{ row.title | safe }}</td>
+                <td>{{ row.author | safe }}</td>
+                <td>{{ row.price | price_parser }}</td>
+                <td>{{ row.description | safe | shortword }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
 
 {% endblock %}

@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, request
 from Bookbot.naverapi import get_idpw, naver_movie, naver_movie_rank
 from Bookbot.forms import MovieInfoForm
-from Bookbot.filter import barhide
 
 bp = Blueprint('movie', __name__, url_prefix='/movie')
 

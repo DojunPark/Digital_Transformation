@@ -28,6 +28,6 @@ def buy_product():
         order = Order(title= stitle, price= slprice, address= form.address.data, create_date=datetime.now())
         db.session.add(order)
         db.session.commit()
-        return render_template('    completed.html')
+        return render_template('completed.html')
 
     return render_template('shopping_buy.html', form=form, stitle=stitle, slprice=slprice, simage=simage)

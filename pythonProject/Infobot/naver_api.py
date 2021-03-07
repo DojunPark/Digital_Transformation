@@ -9,7 +9,7 @@ def n_get_idpw():
     return client_id, client_secret
 
 def n_book_title(keyword, nid, npw):
-    url = 'https://openapi.naver.com/v1/search/book.json?query=' + keyword + '&display=30&start=1'
+    url = 'https://openapi.naver.com/v1/search/book.json?query=' + str(keyword) + '&display=30&start=1'
     html = requests.get(url, headers={"X-Naver-Client-Id": nid,
                                       "X-Naver-Client-Secret": npw})
     json1 = html.json()
@@ -54,7 +54,7 @@ def n_movie_rank():
     return infos
 
 
-def n_shopping_title(keyword, nid, npw):
+def n_shopping_item(keyword, nid, npw):
     url = 'https://openapi.naver.com/v1/search/shop.json?query=' + keyword + '&display=30&start=1'
     html = requests.get(url, headers={"X-Naver-Client-Id": nid,
                                       "X-Naver-Client-Secret": npw})
