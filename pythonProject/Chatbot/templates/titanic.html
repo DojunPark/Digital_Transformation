@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}">
+
+<div class="container my-3">
+
+    <h2 class="border-bottom py-2">타이타닉 생존자 예측</h2>
+
+    <form method="post">
+        <table class="table">
+            <thead>
+                <tr class="text-center thead-dark">
+                    <th>승객 등급</th>
+                    <th>성별</th>
+                    <th>나이</th>
+                    <th>동승 형제/배우자 수</th>
+                    <th>동승 부모/자녀 수</th>
+                    <th>탑승 요금</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center">
+                    <td><input type="text" name=""></td>
+                    <td><input type="text" name=""></td>
+                    <td><input type="text" name=""></td>
+                    <td><input type="text" name=""></td>
+                    <td><input type="text" name=""></td>
+                    <td><input type="text" name=""></td>
+                </tr>
+            </tbody>
+        </table>
+
+<!--        <button style="font-family: 'Nanum Barun Gothic' !important;" type="submit" >예측하기</button>-->
+        <button type="submit" class="btn btn-primary my-2">예측하기</button>
+    </form>
+
+</div>
+
+<div class="container my-3">
+    {% if prediction %}
+        <h3>생존 확률은 {{ prediction }}입니다.</h3>
+    {% endif %}
+
+</div>
+
+{% endblock %}

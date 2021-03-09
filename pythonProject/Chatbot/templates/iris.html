@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}">
+
+<div class="container my-3">
+
+    <h2 class="border-bottom py-2">붓꽃 예측</h2>
+
+    <form method="post">
+        <table class="table">
+            <thead>
+                <tr class="text-center thead-dark">
+                    <th>꽃받침 너비</th>
+                    <th>꽃받침 길이</th>
+                    <th>꽃잎 길이</th>
+                    <th>꽃잎 너비</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center">
+                    <td><input type="text" name="sepal_len"></td>
+                    <td><input type="text" name="sepal_wid"></td>
+                    <td><input type="text" name="petal_len"></td>
+                    <td><input type="text" name="petal_wid"></td>
+                </tr>
+            </tbody>
+        </table>
+
+<!--        <button style="font-family: 'Nanum Barun Gothic' !important;" type="submit" >예측하기</button>-->
+        <button type="submit" class="btn btn-primary my-2">예측하기</button>
+    </form>
+
+</div>
+
+<div class="container my-3">
+    {% if prediction %}
+        <h3>입력하신 붓꽃의 유형은 {{ prediction }}입니다.</h3>
+    {% endif %}
+
+</div>
+
+{% endblock %}
